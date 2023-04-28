@@ -10,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 public class FunctionLibrary
 {
@@ -150,10 +151,27 @@ public class FunctionLibrary
 
 	{
 
-	driver.findElement(By.xpath(LocatorValue)).sendKeys(Keys.ENTER);
+	driver.findElement(By.id(LocatorValue)).sendKeys(Keys.ENTER);
 
 	}
 	
 
+	}
+	public static void validateTitle(WebDriver driver,String Excepted_Title)
+	{
+		String Actual_title=driver.getTitle();
+		try
+		{
+			Assert.assertEquals(Excepted_Title, Actual_title,"Title is not matching");
+		}catch(Throwable t)
+		{
+			System.out.println(t.getMessage());
+			
+		}
+	}
+	// methods for closing
+	public static void closeBrowser(WebDriver driver)
+	{
+		driver.quit();
 	}
 }
